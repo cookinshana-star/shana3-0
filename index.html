@@ -2863,18 +2863,14 @@ iframe#player {
                 await res.json();
 
 
-            this.masterChannels =
-                Array.isArray(data)
-
-                    ? data
-
-                    : (
-                        data.iframes ||
-                        data.channels ||
-                        data.streams ||
-                        data.data ||
-                        []
-                    );
+            this.masterChannels = Array.isArray(data)
+    ? data
+    : Object.entries(data).map(([name, url]) => ({
+        id: name,
+        title: name,
+        name: name,
+        url: url
+    }));
 
 
             if (
