@@ -165,9 +165,9 @@ async function load(){
   try{
     const r=await fetch(JSON_URL,{cache:"no-store"});if(!r.ok)throw new Error("HTTP "+r.status);
     const d=await r.json();
-const raw = Array.isArray(d)
+    const raw = Array.isArray(d)
   ? d
-  : (d.iframes  d.channels  d.data ||
+  : (d.iframes || d.channels || d.data ||
      Object.entries(d).map(([id, url]) => ({
        id: id,
        name: id,
